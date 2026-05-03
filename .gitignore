@@ -98,7 +98,9 @@ bin/
 # ---------------------------------------------------------------------------
 # IDE — VS Code
 # ---------------------------------------------------------------------------
-.vscode/
+.vscode/*
+# We DO want to commit workspace settings (disables noisy Java null-analysis)
+!.vscode/settings.json
 *.code-workspace
 .history/
 
