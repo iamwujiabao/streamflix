@@ -1,0 +1,43 @@
+# Build output (rebuilt inside the image)
+target/
+**/target/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+.project
+.classpath
+.settings/
+
+# Compiled
+*.class
+
+# Logs
+*.log
+logs/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Local secrets — must never enter the build context
+.env
+.env.*
+*.pem
+*.jks
+*.p12
+
+# Docs / examples that aren't needed inside the JAR
+README.md
+HELP.md
+
+# OS / editor swap files
+*.swp
+*.swo
+*~

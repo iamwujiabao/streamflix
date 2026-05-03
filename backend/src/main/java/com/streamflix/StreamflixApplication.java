@@ -1,0 +1,25 @@
+package com.streamflix;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+ * StreamFlix – Video Streaming Database
+ * Principles of Database Management (IT079IU)
+ *
+ * Entry point of the Spring Boot application.
+ */
+@SpringBootApplication
+public class StreamflixApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(StreamflixApplication.class, args);
+        System.out.println("""
+
+                ╔════════════════════════════════════════════╗
+                ║   StreamFlix API — http://localhost:8080   ║
+                ║   Swagger JSON: /v3/api-docs (optional)    ║
+                ╚════════════════════════════════════════════╝
+                """);
+    }
+}
