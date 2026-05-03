@@ -2,6 +2,7 @@ package com.streamflix;
 
 import com.streamflix.dto.VideoCreateRequest;
 import com.streamflix.dto.VideoFilterRequest;
+import com.streamflix.dto.VideoResponse;
 import com.streamflix.entity.Channel;
 import com.streamflix.entity.User;
 import com.streamflix.entity.Video;
@@ -56,11 +57,11 @@ class VideoServiceTest {
                 "My first video " + uniq, "A description here",
                 "https://cdn/x.mp4", "https://cdn/x.jpg", 600,
                 "HD", false, List.of(), List.of("intro_" + uniq, "demo_" + uniq));
-        Video saved = videoService.uploadVideo(channel.getChannelId(), req);
+        VideoResponse saved = videoService.uploadVideo(channel.getChannelId(), req);
 
-        assertNotNull(saved.getVideoId());
-        assertEquals(Video.Status.PUBLISHED, saved.getStatus());
-        assertEquals(2, saved.getTags().size());
+        assertNotNull(saved.videoId());
+        assertEquals("PUBLISHED", saved.status());
+        assertEquals(2, saved.tags().size());
     }
 
     @Test
@@ -73,9 +74,9 @@ class VideoServiceTest {
         VideoFilterRequest req = new VideoFilterRequest(
                 marker, null, null, null, null, null, null, null,
                 null, null, "upload_date", "desc");
-        Page<Video> result = videoService.filter(req, 0, 20);
+        Page<VideoResponse> result = videoService.filter(req, 0, 20);
         assertEquals(1, result.getTotalElements());
-        assertTrue(result.getContent().get(0).getTitle().contains("Spring Boot"));
+        assertTrue(result.getContent().get(0).title().contains("Spring Boot"));
     }
 
     @Test
@@ -88,21 +89,21 @@ class VideoServiceTest {
         VideoFilterRequest req = new VideoFilterRequest(
                 marker, null, null, 100, 1000, null, null, null,
                 null, null, null, null);
-        Page<Video> result = videoService.filter(req, 0, 20);
+        Page<VideoResponse> result = videoService.filter(req, 0, 20);
         assertEquals(1, result.getTotalElements());
-        assertTrue(result.getContent().get(0).getTitle().endsWith("_mid"));
+        assertTrue(result.getContent().get(0).title().endsWith("_mid"));
     }
 
     @Test
     void delete_marks_status_as_removed() {
-        Video v = upload("ToRemove_" + uniq, "x", 100);
-        videoService.delete(v.getVideoId());
+        VideoResponse v = upload("ToRemove_" + uniq, "x", 100);
+        videoService.delete(v.videoId());
 
-        Video reloaded = videoRepository.findById(v.getVideoId()).orElseThrow();
+        Video reloaded = videoRepository.findById(v.videoId()).orElseThrow();
         assertEquals(Video.Status.REMOVED, reloaded.getStatus());
     }
 
-    private Video upload(String title, String desc, int duration) {
+    private VideoResponse upload(String title, String desc, int duration) {
         return videoService.uploadVideo(channel.getChannelId(),
                 new VideoCreateRequest(title, desc, "https://cdn/" + title + ".mp4", null,
                         duration, "HD", false, List.of(), List.of()));

@@ -3,6 +3,7 @@
 > **IT079IU — Principles of Database Management**
 > Vietnam National University – International University, HCMC
 > Instructor: Assoc. Prof. Nguyen Thi Thuy Loan, PhD.
+> Source code: <https://github.com/iamwujiabao/streamflix>
 
 A production-grade, end-to-end video streaming platform built around a
 normalised MySQL schema, a Spring Boot REST API, and a JavaFX desktop
