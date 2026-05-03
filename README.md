@@ -198,8 +198,7 @@ cd frontend && mvn test
 - `docs/RELATIONAL_SCHEMA.md` — ER → relational translation
 - `docs/NORMALIZATION.md` — Per-table 1NF→4NF analysis
 - `docs/API.md` — REST endpoint reference
-- `docs/StreamFlix_Final_Report.docx` — full IEEE-style report
-- Live docs: `http://localhost:8080/api/swagger-ui.html`
+- Live docs: `http://localhost:8081/api/swagger-ui.html`
 
 ---
 

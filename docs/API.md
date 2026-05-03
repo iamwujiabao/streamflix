@@ -1,6 +1,6 @@
 # StreamFlix REST API Reference
 
-Base URL: `http://<host>:8080/api`
+Base URL (default Docker setup): `http://localhost:8081/api`
 All responses are wrapped in a uniform `ApiResponse<T>` envelope:
 
 ```json
@@ -98,11 +98,9 @@ All fields are optional. Empty/null fields are skipped.
 | Method | Path                                  | Auth | Description                         |
 | ------ | ------------------------------------- | ---- | ----------------------------------- |
 | GET    | `/channels`                           | pub  | List all channels                   |
-| GET    | `/channels/{channelId}`               | pub  | Channel details                     |
-| GET    | `/channels/{channelId}/videos`        | pub  | Channel's videos                    |
+| GET    | `/channels/{id}`                      | pub  | Channel details                     |
 | POST   | `/channels`                           | JWT  | Create channel `{ name, description }` |
-| POST   | `/channels/{channelId}/subscribe`     | JWT  | Subscribe                           |
-| DELETE | `/channels/{channelId}/subscribe`     | JWT  | Unsubscribe                         |
+| POST   | `/channels/{channelId}/subscribe`     | JWT  | Toggle subscribe to a channel       |
 
 ---
 
@@ -148,10 +146,11 @@ All fields are optional. Empty/null fields are skipped.
 
 ## Categories and Users
 
-| Method | Path                  | Auth | Description                       |
-| ------ | --------------------- | ---- | --------------------------------- |
-| GET    | `/categories`         | pub  | All categories                    |
-| GET    | `/users/{userId}`     | pub  | Public profile                    |
+| Method | Path                  | Auth | Description                          |
+| ------ | --------------------- | ---- | ------------------------------------ |
+| GET    | `/categories`         | pub  | All categories                       |
+| GET    | `/users/{id}`         | pub  | Public profile                       |
+| GET    | `/users/me/history?page&size` | JWT | Paginated watch history of current user |
 
 ---
 
